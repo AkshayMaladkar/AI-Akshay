@@ -1,0 +1,106 @@
+# Test Cases: app.vwo.com Login Page
+
+| Field | Value |
+|-------|-------|
+| **Version** | 1.0 |
+| **Author** | Antigravity |
+| **Date** | 2026-05-13 |
+| **Total Test Cases** | 5 |
+
+---
+
+## Test Case Format
+
+Each test case follows this structure:
+
+| Field | Description |
+|-------|-------------|
+| **TC ID** | Unique identifier (TC-001, TC-002, ...) |
+| **Title** | Brief description of what is tested |
+| **Preconditions** | What must be true before the test |
+| **Steps** | Step-by-step instructions |
+| **Expected Result** | What should happen |
+| **Priority** | High / Medium / Low |
+| **Category** | Smoke / Functional / Negative |
+| **Spec File** | Corresponding Playwright spec file |
+
+---
+
+## Test Cases
+
+### TC-001: Empty Email and Password
+| Field | Value |
+|-------|-------|
+| **TC ID** | TC-001 |
+| **Title** | Verify login fails when both email and password fields are left empty |
+| **Preconditions** | User is on the login page (https://app.vwo.com/#/login) |
+| **Steps** | 1. Navigate to the login page.<br>2. Leave the "Email address" field empty.<br>3. Leave the "Password" field empty.<br>4. Click the "Sign in" button. |
+| **Expected Result** | Login should fail and an error message "Your email, password, IP address or location did not match" (or field validation error) should be displayed. |
+| **Priority** | High |
+| **Category** | Negative |
+| **Spec File** | `login.spec.ts` |
+
+### TC-002: Invalid Email Format
+| Field | Value |
+|-------|-------|
+| **TC ID** | TC-002 |
+| **Title** | Verify login fails when an invalid email format is entered |
+| **Preconditions** | User is on the login page |
+| **Steps** | 1. Navigate to the login page.<br>2. Enter an invalid email format (e.g., "invalid_email_format") in the "Email address" field.<br>3. Enter a dummy password (e.g., "Password123!") in the "Password" field.<br>4. Click the "Sign in" button. |
+| **Expected Result** | The system should reject the invalid email format and display an appropriate error message like "Your email, password, IP address or location did not match" or a specific format validation error. |
+| **Priority** | High |
+| **Category** | Negative |
+| **Spec File** | `login.spec.ts` |
+
+### TC-003: Invalid Email and Password (Dummy Login)
+| Field | Value |
+|-------|-------|
+| **TC ID** | TC-003 |
+| **Title** | Verify login fails with non-existent (dummy) user credentials |
+| **Preconditions** | User is on the login page |
+| **Steps** | 1. Navigate to the login page.<br>2. Enter a dummy email (e.g., "dummyuser12345@example.com") in the "Email address" field.<br>3. Enter a dummy password (e.g., "WrongPass!23") in the "Password" field.<br>4. Click the "Sign in" button. |
+| **Expected Result** | The login should be unsuccessful and the message "Your email, password, IP address or location did not match" should be displayed. |
+| **Priority** | High |
+| **Category** | Negative |
+| **Spec File** | `login.spec.ts` |
+
+### TC-004: Valid Email but Invalid Password
+| Field | Value |
+|-------|-------|
+| **TC ID** | TC-004 |
+| **Title** | Verify login fails when a valid email but incorrect password is used |
+| **Preconditions** | User is on the login page and possesses a valid registered email |
+| **Steps** | 1. Navigate to the login page.<br>2. Enter a valid registered email in the "Email address" field.<br>3. Enter an incorrect password in the "Password" field.<br>4. Click the "Sign in" button. |
+| **Expected Result** | The user should not be logged in and the error message "Your email, password, IP address or location did not match" should appear. |
+| **Priority** | High |
+| **Category** | Negative |
+| **Spec File** | `login.spec.ts` |
+
+### TC-005: Arabic Characters in Email/Password fields
+| Field | Value |
+|-------|-------|
+| **TC ID** | TC-005 |
+| **Title** | Verify login handling when Arabic characters are entered |
+| **Preconditions** | User is on the login page |
+| **Steps** | 1. Navigate to the login page.<br>2. Enter an email containing Arabic characters (e.g., "تجربة@موقع.كوم") in the "Email address" field.<br>3. Enter a password containing Arabic characters in the "Password" field.<br>4. Click the "Sign in" button. |
+| **Expected Result** | The system should gracefully handle the input and either show an invalid email format error or the standard "Your email, password, IP address or location did not match" message without crashing. |
+| **Priority** | Medium |
+| **Category** | Negative |
+| **Spec File** | `login.spec.ts` |
+
+---
+
+## Summary
+
+| Priority | Count |
+|----------|-------|
+| High | 4 |
+| Medium | 1 |
+| Low | 0 |
+| **Total** | **5** |
+
+| Category | Count |
+|----------|-------|
+| Smoke | 0 |
+| Functional | 0 |
+| Negative | 5 |
